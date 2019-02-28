@@ -8,3 +8,4 @@ void get_matrix(float** matrix, float** new_matrix, int row, int column, int SIZ
 
 
 #endif
+
