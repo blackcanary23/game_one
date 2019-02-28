@@ -9,7 +9,7 @@
 
 int main(void)
 {
-	int** matrix; // указатель на указатель на строку элементов
+	float** matrix; // указатель на указатель на строку элементов
 
 	system("chcp 1251");
 	system("cls");
@@ -17,16 +17,16 @@ int main(void)
 	scanf("%d", &SIZE);
 
 	// Выделение памяти под указатели на строки
-	matrix = (int**)malloc(SIZE * sizeof(int*));
+	matrix = (float**)malloc(SIZE * sizeof(float*));
 	// Ввод элементов массива
 	for (int i = 0; i < SIZE; i++)  // цикл по строкам
 	{
 		// Выделение памяти под хранение строк
-		matrix[i] = (int*)malloc(SIZE * sizeof(int));
+		matrix[i] = (float*)malloc(SIZE * sizeof(float));
 		for (int j = 0; j < SIZE; j++)  // цикл по столбцам
 		{
 			printf("matrix[%d][%d] = ", i, j);
-			scanf("%d", &matrix[i][j]);
+			scanf("%f", &matrix[i][j]);
 		}
 	}
 
