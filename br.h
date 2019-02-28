@@ -4,7 +4,6 @@
 
 int SIZE;
 
-
 typedef struct
 {
 	int strategy_number_of_B;
