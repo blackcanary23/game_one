@@ -4,28 +4,33 @@
 
 
 
-int compute_inverse_matrix(int** matrix, int SIZE, int main_det)
+int compute_inverse_matrix(float** matrix, int SIZE, int main_det)
 {
 	int new_SIZE;
 	new_SIZE = SIZE - 1;
-	int sign = 1;
+	float sign = 1;
 	int det;
 
-	int **new_matrix;
-	new_matrix = (int**)malloc(SIZE * sizeof(int*));
+	float **matr;
+	matr = (float**)malloc(SIZE * sizeof(float*));
 	for (int i = 0; i < SIZE; i++)
-		new_matrix[i] = (int*)malloc(SIZE * sizeof(int));
+		matr[i] = (float*)malloc(SIZE * sizeof(float));
+
+	float **inv_matr;
+	inv_matr = (float**)malloc(SIZE * sizeof(float*));
+	for (int i = 0; i < SIZE; i++)
+		inv_matr[i] = (float*)malloc(SIZE * sizeof(float));
 	
 
 	for (int i = 0; i < SIZE; i++)
 	{
 		for (int j = 0; j < SIZE; j++)
 		{
-			get_matrix(matrix, new_matrix, i, j, SIZE);
-			det = compute_determinant(new_matrix, new_SIZE);
-			new_matrix[i][j] = sign * det;
+			get_matrix(matrix, matr, i, j, SIZE);
+			det = compute_determinant(matr, new_SIZE);
+			inv_matr[j][i] = sign * det / main_det;
 			sign = -sign;
-			//printf("%d\t", new_matrix[i][j]);
+			//printf("%.0f\t", new_matrix[i][j]);
 		}
 		//printf("\n");
 	}
@@ -35,18 +40,21 @@ int compute_inverse_matrix(int** matrix, int SIZE, int main_det)
 	{
 		for (int j = 0; j < SIZE; j++)
 		{
-			matrix[i][j] = new_matrix[j][i];
-			printf("%d\t", matrix[i][j]);
+			printf("%.3f\t", inv_matr[i][j]);
 		}
 		printf("\n");
 	}
-
+	
 	//printf("%d\t", main_det);
 
 	// Очистка памяти
 		for (int j = 0; j < SIZE; j++)  // цикл по строкам
-			free(new_matrix[j]);   // освобождение памяти под строку
-	free(new_matrix);
+			free(matr[j]);   // освобождение памяти под строку
+	free(matr);
+
+	for (int j = 0; j < SIZE; j++)  // цикл по строкам
+		free(inv_matr[j]);   // освобождение памяти под строку
+	free(inv_matr);
 	
 	return 0;
 }
