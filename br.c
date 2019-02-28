@@ -3,7 +3,7 @@
 #include "braun_robinson_method.h"
 
 
-int search_of_min_element(int** matrix, gamer_A* ptrObjA, static int* loss_of_B, gamer_B* ptrObjB)
+int search_of_min_element(float** matrix, gamer_A* ptrObjA, static float* loss_of_B, gamer_B* ptrObjB)
 {
 	for (int i = 1, k = 0; i <= SIZE; i++, k++)
 	{
@@ -32,7 +32,7 @@ int search_of_min_element(int** matrix, gamer_A* ptrObjA, static int* loss_of_B,
 	return 0;
 }
 
-int search_of_max_element(int** matrix, gamer_B* ptrObjB, static int* win_of_A, gamer_A* ptrObjA)
+int search_of_max_element(float** matrix, gamer_B* ptrObjB, static float* win_of_A, gamer_A* ptrObjA)
 {
 	for (int i = 1, k = 0; i <= SIZE; i++, k++)
 	{
