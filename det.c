@@ -4,7 +4,7 @@
 
 
 // Получение матрицы без i-й строки и j-го столбца
- void get_matrix(int** matrix, int** new_matrix, int row, int column, int SIZE) {
+ void get_matrix(float** matrix, float** new_matrix, int row, int column, int SIZE) {
 	int di, dj;
 	di = 0;
 	for (int i = 0; i < SIZE - 1; i++) { // проверка индекса строки
@@ -17,13 +17,13 @@
 	}
 }
 // Рекурсивное вычисление определителя
- int compute_determinant(int **matrix, int SIZE) {
-	int det, sign, new_SIZE;
+ int compute_determinant(float** matrix, int SIZE) {
+	 int det, sign, new_SIZE;
 	
-	int **new_matrix;
-	new_matrix = (int**)malloc(SIZE * sizeof(int*));
+	float **new_matrix;
+	new_matrix = (float**)malloc(SIZE * sizeof(float*));
 	for (int i = 0; i < SIZE; i++)  
-		new_matrix[i] = (int*)malloc(SIZE * sizeof(int));
+		new_matrix[i] = (float*)malloc(SIZE * sizeof(float));
 	
 
 	det = 0;
@@ -48,9 +48,10 @@
 	}
 
 	// Очистка памяти
-	for (int j = 0; j < new_SIZE; j++)  // цикл по строкам
+	/*for (int j = 0; j < new_SIZE; j++)  // цикл по строкам
 		free(new_matrix[j]);   // освобождение памяти под строку
-	free(new_matrix);
+	free(new_matrix);*/
 
 	return(det);
 }
+
