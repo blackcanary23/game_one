@@ -1,5 +1,5 @@
 
 
-int  compute_determinant(int **matrix, int SIZE);
+int compute_determinant(float **matrix, int SIZE);
 
-void get_matrix(int** matrix, int** new_matrix, int row, int column, int SIZE);
+void get_matrix(float** matrix, float** new_matrix, int row, int column, int SIZE);
