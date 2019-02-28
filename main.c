@@ -41,7 +41,7 @@ int main(void)
 	static int* win_of_A;
 	loss_of_B = (float*)malloc(SIZE * sizeof(float));
 	win_of_A = (float*)malloc(SIZE * sizeof(float));
-	
+
 	for (int i = 0; i < SIZE; i++)
 	{
 		loss_of_B[i] = 0;
@@ -59,7 +59,7 @@ int main(void)
 	 // Выделение памяти
 	p = (float*)malloc(SIZE * sizeof(float));
 	q = (float*)malloc(SIZE * sizeof(float));
-	
+
 
 	for (int j = 0; j < SIZE; j++)
 	{
@@ -69,11 +69,11 @@ int main(void)
 
 	printf("\n%s\n\n", "1. Braun-Robinson Method");
 	printf("%s\t %s ", "game_number", "strategy_number_of_A");
-		for (int i = 0; i < SIZE; i++)
-			printf("\t%s%d ", "B", i);
+	for (int i = 0; i < SIZE; i++)
+		printf("\t%s%d ", "B", i);
 	printf("\t%s ", "strategy_number_of_B");
-	    for (int j = 0; j < SIZE; j++)
-		    printf("\t%s%d ", "A", j);
+	for (int j = 0; j < SIZE; j++)
+		printf("\t%s%d ", "A", j);
 	printf("\t%s \t%s \t%s \t%s\n", "lower_price", "upper_price", "average_price", "accuracy");
 	do
 	{
@@ -96,7 +96,7 @@ int main(void)
 		{
 			if (ptrObjA->strategy_number_of_A == (i + 1))
 			{
-	
+
 				p[i] = p[i] + 1;
 				break;
 			}
@@ -116,10 +116,10 @@ int main(void)
 
 
 	printf("\n %s", "Count of A gamer strategies: ");
-		for (int j = 0; j < SIZE; j++)
+	for (int j = 0; j < SIZE; j++)
 		printf("%.0f ", p[j]);
 	printf("\n %s", "Count of B gamer strategies: ");
-		for (int i = 0; i < SIZE; i++)
+	for (int i = 0; i < SIZE; i++)
 		printf("%.0f ", q[i]);
 
 	for (int i = 0; i < SIZE; i++)
@@ -150,64 +150,19 @@ int main(void)
 
 	//
 
-	/*int* vector;
-	vector = (int*)malloc(SIZE * sizeof(int));
 
-	for (int i = 0; i < SIZE; i++)
-	{
-		vector[i] = 1;
-	}*/
-	
 	int det;
 	det = compute_determinant(matrix, SIZE);
-	printf("\n%d", det);
-	
+
 	if (det == 0)
 		printf("\n\n%s\n\n", "Ошибка! Определитель равен нулю, обратной матрицы не существует!");
 
-		printf("\n\n%s\n\n", "2. Analytical Method");
-		printf("%s\n", "Inverse matrix: ");
-		compute_inverse_matrix(matrix, SIZE, det);
+	printf("\n\n%s\n\n", "2. Analytical Method");
+	printf("%s\n", "Inverse matrix: ");
+	compute_inverse_matrix(matrix, SIZE, det);
 
-/*		for (int i = 0; i < 3; i++)
-		{
-			for (int j = 0; j < 3; j++)
-			{
-				printf("%.4f\t\t", inv_matrix[i][j]);
-			}
-			printf("\n");
-		}
-
-		float gamerA_strategy[3];
-		float* gamerA_strategy_ptr = gamerA_strategy;
-		float gamerB_strategy[3];
-		float* gamerB_strategy_ptr = gamerB_strategy;
-		float game_price;
-		float* game_price_ptr = &game_price;;
-
-		printf("\n%s\t%s\n", "GamerA_strategy: ", "GamerB_strategy: ");
-		compute_gamers_strategies(inv_matrix, vector_u, game_price_ptr, gamerA_strategy_ptr, gamerB_strategy_ptr);
-
-		for (int k = 0; k < 3; k++)
-		{
-			printf("%.4f\t\t\t", gamerA_strategy[k]);
-			printf("%.4f\n", gamerB_strategy[k]);
-		}
-
-		printf("\n%s %.4f\n", "Game_price: ", game_price);
-		
-
-		//
-
-		*/
-
-
-
-
-
-
-
-		// Очистка памяти
+	
+			// Очистка памяти
 	for (int j = 0; j < SIZE; j++)  // цикл по строкам
 		free(matrix[j]);   // освобождение памяти под строку
 	free(matrix);
