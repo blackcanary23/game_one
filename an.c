@@ -32,10 +32,14 @@ void compute_strategies(float** inv_matr, int SIZE)
 		temp = temp + A_strategy[i];
 	}
 
+	float temp_p = 0;
+	float temp_q = 0;
+
 	printf("\n%s", "Стратегия игрока А: ");
 	for (int j = 0; j < SIZE; j++)
 	{
 		A_strategy[j] = A_strategy[j] / temp;
+		temp_p = temp_p + A_strategy[j];
 		printf("\t%.3f", A_strategy[j]);
 	}
 
@@ -43,11 +47,26 @@ void compute_strategies(float** inv_matr, int SIZE)
 	for (int k = 0; k < SIZE; k++)
 	{
 		B_strategy[k] = B_strategy[k] / temp;
+		temp_q = temp_q + B_strategy[k];
 		printf("\t%.3f", B_strategy[k]);
 	}
 
+	if ((rint(temp_p) != 1) || (rint(temp_q) != 1))
+		printf("\n\n%s\n", "Ошибка! Сумма вероятностей использования стратегий для каждого игрока должна быть равна единице!");
+	printf("\n\n");
+
 	float price = 1 / temp;
-	printf("\n\n%s %.3f\n", "Цена игры: ", price);
+	printf("%s %.3f\n", "Цена игры: ", price);
+
+	for (int k = 0; k < SIZE; k++)
+	{
+		if ((A_strategy[k] < 0) || (B_strategy[k] < 0))
+		{
+			printf("\n%s\n", "Аналитический метод не применим! Воспользуйтесь другим методом!");
+			break;
+		}
+	}
+	
 
 	free(A_strategy);
 	free(B_strategy);
