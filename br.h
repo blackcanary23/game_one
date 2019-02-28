@@ -1,5 +1,9 @@
+#ifndef BRAUN_ROBINSON_METHOD_H
+#define BRAUN_ROBINSON_METHOD_H
+
+
 int SIZE;
-//int new_SIZE;
+
 
 typedef struct
 {
@@ -13,3 +17,5 @@ typedef struct
 	int max_element;
 } gamer_A;
 
+
+#endif
