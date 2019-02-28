@@ -10,7 +10,7 @@ int search_of_min_element(int** matrix, gamer_A* ptrObjA, static int* loss_of_B,
 		if (ptrObjA->strategy_number_of_A == i)
 		{
 			for (int j = 0; j < SIZE; j++)
-			loss_of_B[j] = loss_of_B[j] + matrix[k][j];
+				loss_of_B[j] = loss_of_B[j] + matrix[k][j];
 		}
 	}
 
@@ -18,7 +18,7 @@ int search_of_min_element(int** matrix, gamer_A* ptrObjA, static int* loss_of_B,
 	int index = 1;
 	for (int i = 1; i < SIZE; i++)
 	{
-		
+
 		if (loss_of_B[i] < temp)
 		{
 			temp = loss_of_B[i];
@@ -57,8 +57,7 @@ int search_of_max_element(int** matrix, gamer_B* ptrObjB, static int* win_of_A, 
 	}
 	ptrObjA->strategy_number_of_A = index;
 	ptrObjA->max_element = temp;
-	
+
 
 	return 0;
 }
-
