@@ -25,7 +25,7 @@ int main(void)
 		matrix[i] = (float*)malloc(SIZE * sizeof(float));
 		for (int j = 0; j < SIZE; j++)  // цикл по столбцам
 		{
-			printf("matrix[%d][%d] = ", i, j);
+			printf("матрица[%d][%d] = ", i, j);
 			scanf("%f", &matrix[i][j]);
 		}
 	}
@@ -37,8 +37,8 @@ int main(void)
 	float accuracy;
 
 
-	static int* loss_of_B;
-	static int* win_of_A;
+	static float* loss_of_B;
+	static float* win_of_A;
 	loss_of_B = (float*)malloc(SIZE * sizeof(float));
 	win_of_A = (float*)malloc(SIZE * sizeof(float));
 
@@ -67,20 +67,20 @@ int main(void)
 		q[j] = 0;
 	}
 
-	printf("\n%s\n\n", "1. Braun-Robinson Method");
-	printf("%s\t %s ", "game_number", "strategy_number_of_A");
+	printf("\n%s\n\n", "1. Метод Брауна-Робинсон");
+	printf("%s\t %s ", "Партия", "Номер стратегии А");
 	for (int i = 0; i < SIZE; i++)
 		printf("\t%s%d ", "B", i);
-	printf("\t%s ", "strategy_number_of_B");
+	printf("\t%s ", "Номер стратегии В");
 	for (int j = 0; j < SIZE; j++)
 		printf("\t%s%d ", "A", j);
-	printf("\t%s \t%s \t%s \t%s\n", "lower_price", "upper_price", "average_price", "accuracy");
+	printf("\t%s \t%s \t%s \t%s\n", "Нижняя оценка", "Верхняя оценка", "Средняя цена игры", "Точность");
 	do
 	{
 		search_of_min_element(matrix, ptrObjA, loss_of_B, ptrObjB);
-		printf("%.0f \t\t %d \t\t\t", game_number, ptrObjA->strategy_number_of_A);
+		printf("%.0f \t %d \t\t\t", game_number, ptrObjA->strategy_number_of_A);
 		for (int i = 0; i < SIZE; i++)
-			printf("%d\t", loss_of_B[i]);
+			printf("%.0f\t", loss_of_B[i]);
 		printf("%d\t\t ", ptrObjB->strategy_number_of_B);
 		search_of_max_element(matrix, ptrObjB, win_of_A, ptrObjA);
 		lower_price = ptrObjB->min_element / game_number;
@@ -88,8 +88,8 @@ int main(void)
 		average_price = (lower_price + upper_price) / 2;
 		accuracy = upper_price - lower_price;
 		for (int j = 0; j < SIZE; j++)
-			printf("\t%d", win_of_A[j]);
-		printf("\t%.3f \t\t%.3f \t\t%.3f \t\t%.3f\n", lower_price, upper_price, average_price, accuracy);
+			printf("\t%.0f", win_of_A[j]);
+		printf("\t%.3f \t\t%.3f \t\t%.3f \t\t\t%.3f\n", lower_price, upper_price, average_price, accuracy);
 		game_number++;
 
 		for (int i = 0; i < SIZE; i++)
@@ -115,10 +115,10 @@ int main(void)
 	} while (accuracy > 0.1);
 
 
-	printf("\n %s", "Count of A gamer strategies: ");
+	printf("\n %s", "Счетчик стратегий игрока А: ");
 	for (int j = 0; j < SIZE; j++)
 		printf("%.0f ", p[j]);
-	printf("\n %s", "Count of B gamer strategies: ");
+	printf("\n %s", "Счетчик стратегий игрока В: ");
 	for (int i = 0; i < SIZE; i++)
 		printf("%.0f ", q[i]);
 
@@ -131,13 +131,13 @@ int main(void)
 	float temp_p = 0;
 	float temp_q = 0;
 
-	printf("\n %s", "A_strategy: ");
+	printf("\n\n %s", "Стратегия игрока А: ");
 	for (int j = 0; j < SIZE; j++)
 	{
 		temp_p = temp_p + p[j];
 		printf("%.3f ", p[j]);
 	}
-	printf("\n %s", "B_strategy: ");
+	printf("\n %s", "Стратегия игрока В: ");
 	for (int i = 0; i < SIZE; i++)
 	{
 		temp_q = temp_q + q[i];
@@ -148,6 +148,7 @@ int main(void)
 		printf("\n\n%s\n", "Ошибка! Сумма вероятностей использования стратегий для каждого игрока должна быть равна единице!");
 	printf("\n\n");
 
+
 	//
 
 
@@ -157,8 +158,8 @@ int main(void)
 	if (det == 0)
 		printf("\n\n%s\n\n", "Ошибка! Определитель равен нулю, обратной матрицы не существует!");
 
-	printf("\n\n%s\n\n", "2. Analytical Method");
-	printf("%s\n", "Inverse matrix: ");
+	printf("\n\n%s\n\n", "2. Аналитический метод");
+	printf("%s\n", "Обратная матрица: ");
 	compute_inverse_matrix(matrix, SIZE, det);
 
 	
